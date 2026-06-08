@@ -62,5 +62,5 @@ def event_check(service, times , lesson_date):
 
         if len(busy) == 0:
             return hour
-
+    print("Unavailable")
     return None
