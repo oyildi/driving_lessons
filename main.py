@@ -45,27 +45,35 @@ def run():
             dt['time'] = event_check(
                 service=service, times=times, lesson_date=date_obj
             )
-            if None in dt:
+            if dt["time"] is None:
                 print("Aborting")
+                save_last_seen(latest_id)
                 return
+
         
             #passes checks
-            body = f"Hey, can I please claim the {dt['time']}pm lesson "
+            body = f"Hey, can I please claim the {dt['time']}PM lesson "
             if(date.today() != date_obj):
                 body += f"on {day_name}"
             
             else:
                 body += "today"
+            body += "\n\nBest,\nOrhan Yildiz"
+            if "none" in body.lower():
+                print("Aborting")
+                save_last_seen(latest_id)
+                return
+
             send_email(
-                "orhanhariyildiz@gmail.com",
-                f"{dt['time']}pm claim Needham",
+                "info@needhamdrivingschool.com",
+                f"{dt['time']}PM claim Needham",
                 body
             )
             
         else:
             pass
-        
         save_last_seen(latest_id)
+
     else:
         print("No new post")
 
@@ -78,4 +86,4 @@ while True:
     except Exception as e:
         print(e)
 
-    time.sleep(45)
+    time.sleep(25)
