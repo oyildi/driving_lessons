@@ -7,6 +7,7 @@ import os
 import time
 import re
 
+tz = ZoneInfo("America/New_York")
 
 def has_needham(text):
     return "needham" in text
@@ -90,8 +91,14 @@ def run():
 
 
 while True:
+    try:
+        now = datetime.now(tz)
 
-    run()
-    
-    time.sleep(5)
+        if 6 <= now.hour <= 21:
+            run()
+        
+        time.sleep(3)
+    except Exception as e:
+        print(f"Error: {e}")
+
    
