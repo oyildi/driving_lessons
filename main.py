@@ -1,7 +1,8 @@
 from gmail_code import send_email , calendar_service
 from x_monitor import get_latest_tweet, load_last_seen, save_last_seen
 from calendar_check import get_dt , event_check
-from datetime import date
+from datetime import date , datetime, timezone
+from zoneinfo import ZoneInfo
 import os
 import re
 
@@ -22,8 +23,16 @@ def run():
     last_seen = load_last_seen()
 
     if latest_id != last_seen:
-        # print("NEW POST DETECTED:")
-        # print(text)
+        print("NEW POST")
+        created = datetime.fromisoformat(
+            tweet["created_at"].replace("Z", "+00:00")
+        )
+
+        seen = datetime.now(timezone.utc)
+
+        print(f"created: {created.isoformat()}")
+        print(f"seen:    {seen.isoformat()}")
+        print(f"delay:   {(seen - created).total_seconds():.3f} seconds")
 
         #parse
 
@@ -86,4 +95,4 @@ while True:
     except Exception as e:
         print(e)
 
-    time.sleep(25)
+    time.sleep(10)
