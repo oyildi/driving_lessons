@@ -27,15 +27,18 @@ def run():
 
     if latest_id != last_seen:
         print("NEW POST DETECTED")
-        created = datetime.fromisoformat(
-            tweet["created_at"].replace("Z", "+00:00")
-        )
+        try:
+            created = datetime.fromisoformat(
+                tweet["created_at"].replace("Z", "+00:00")
+            )
 
-        seen = datetime.now(timezone.utc)
+            seen = datetime.now(timezone.utc)
 
-        print(f"created: {created.isoformat()}")
-        print(f"seen:    {seen.isoformat()}")
-        print(f"delay:   {(seen - created).total_seconds():.3f} seconds")
+            print(f"created: {created.isoformat()}")
+            print(f"seen:    {seen.isoformat()}")
+            print(f"delay:   {(seen - created).total_seconds():.3f} seconds")
+        except Exception as er:
+            print(f"Failed to retrieve creation stats due to: '{er}' , straight to parsing")
 
         #parse
 
