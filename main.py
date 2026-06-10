@@ -26,7 +26,7 @@ def run():
     last_seen = load_last_seen()
 
     if latest_id != last_seen:
-        print("NEW POST")
+        print("NEW POST DETECTED")
         created = datetime.fromisoformat(
             tweet["created_at"].replace("Z", "+00:00")
         )
