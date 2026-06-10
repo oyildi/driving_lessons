@@ -97,7 +97,7 @@ while True:
     try:
         now = datetime.now(tz)
 
-        if 6 <= now.hour <= 21:
+        if 6 <= now.hour <= 22:
             run()
         
         time.sleep(3)
