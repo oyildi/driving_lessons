@@ -7,7 +7,6 @@ import os
 import time
 import re
 
-tz = ZoneInfo("America/New_York")
 
 def has_needham(text):
     return "needham" in text
