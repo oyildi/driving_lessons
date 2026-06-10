@@ -1,10 +1,13 @@
 from gmail_code import send_email , calendar_service
 from x_monitor import get_latest_tweet, load_last_seen, save_last_seen
 from calendar_check import get_dt , event_check
-from datetime import date , datetime, timezone
+from datetime import date , datetime, timezone, timedelta
 from zoneinfo import ZoneInfo
 import os
+import time
 import re
+
+tz = ZoneInfo("America/New_York")
 
 def has_needham(text):
     return "needham" in text
@@ -87,12 +90,11 @@ def run():
         print("No new post")
 
 
-import time
-
 while True:
-    try:
-        run()
-    except Exception as e:
-        print(e)
+    now = datetime.now(tz)
 
-    time.sleep(10)
+    if 6 <= now.hour <= 21:
+        run()
+    
+    time.sleep(3)
+   
