@@ -61,12 +61,11 @@ def run():
                 service=service, times=times, lesson_date=date_obj
             )
             if dt["time"] is None:
-                print("Aborting")
+                print("Aborting , time = none")
                 save_last_seen(latest_id)
                 return
 
         
-            #passes checks
             body = f"Hey, can I please claim the {dt['time']}PM lesson "
             if(date.today() != date_obj):
                 body += f"on {day_name}"
@@ -75,10 +74,16 @@ def run():
                 body += "today"
             body += "\n\nBest,\nOrhan Yildiz"
             if "none" in body.lower():
-                print("Aborting")
+                print("Aborting , none in body")
                 save_last_seen(latest_id)
                 return
 
+            if(date_obj < date.today()):
+                print("Aborting , detected past lesson")
+                save_last_seen(latest_id)
+                return
+            
+            #passes checks
             send_email(
                 "info@needhamdrivingschool.com",
                 f"{dt['time']}PM claim Needham",
