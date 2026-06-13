@@ -4,15 +4,27 @@ import os
 import re
 
 def get_dt(text):
+    month_names = ["january" ,"febuary" , "march" , "april" , "may" , "june" , "july" , "august" , "september" , "october" , "november" , "december"]
     match = re.search(r'(\d{1,2})/(\d{1,2})', text)
 
     if match:
         m = int(match.group(1))
         d = int(match.group(2))
     else:
+        
         m = None
         d = None
-        
+        for i, month in enumerate(month_names, start=1):
+            match2 = re.search(
+                rf'{month}\s+(\d{{1,2}})(?:st|nd|rd|th)',
+                text
+            )
+            if match2:
+                m = i
+                d = int(match2.group(1))
+                break
+
+    
     dt = dict(month =m, day = d,time =None)
     return dt
 
@@ -22,7 +34,7 @@ def event_check(service, times , lesson_date):
         m = re.search(r'(\d{1,2})', t)
         if m:
             hours.append(int(m.group(1)))
-
+    print(hours)
     for hour in sorted(hours, reverse=True):
 
         military_hour = hour

@@ -10,15 +10,21 @@ headers = {
     "Authorization": f"Bearer {BEARER_TOKEN}"
 }
 
-username = "NeedhamDriving"
+#real
+# username = "NeedhamDriving"
 
-user_id = 426716224
+# user_id = 426716224
+
+#testing
+username = "snsjsnshsx"
+
+user_id = 1624633118672945153
 
 STATE_FILE = "last_seen.txt"
 
-# url = f"https://api.x.com/2/users/by/username/{username}"
+url = f"https://api.x.com/2/users/by/username/{username}"
 
-# r = requests.get(url, headers=headers)
+r = requests.get(url, headers=headers)
 
 # print(r.json())
 
