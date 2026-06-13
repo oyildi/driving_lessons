@@ -85,7 +85,7 @@ def run():
             
             #passes checks
             send_email(
-                "info@needhamdrivingschool.com",
+                "orhanhariyildiz@gmail.com",
                 f"{dt['time']}PM claim Needham",
                 body
             )
