@@ -11,14 +11,14 @@ headers = {
 }
 
 #real
-# username = "NeedhamDriving"
+username = "NeedhamDriving"
 
-# user_id = 426716224
+user_id = 426716224
 
 #testing
-username = "snsjsnshsx"
+# username = "snsjsnshsx"
 
-user_id = 1624633118672945153
+# user_id = 1624633118672945153
 
 STATE_FILE = "last_seen.txt"
 
