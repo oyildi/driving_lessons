@@ -39,7 +39,7 @@ def run():
             print(f"delay:   {(seen - created).total_seconds():.3f} seconds")
         except Exception as er:
             print(f"Failed to retrieve creation stats due to: '{er}' , straight to parsing")
-
+        save_last_seen(latest_id)
         #parse
 
         if(has_needham(text=text_lower) and unclaimed(text=text_lower)):   
@@ -92,7 +92,6 @@ def run():
             
         else:
             pass
-        save_last_seen(latest_id)
 
     else:
         print("No new post")
