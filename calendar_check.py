@@ -51,20 +51,20 @@ def event_check(service, times , lesson_date):
             tzinfo=ZoneInfo("America/New_York")
         )
 
-        # 30 min drive before
-        protected_start = lesson_start - timedelta(minutes=30)
+        # 15 min drive before
+        protected_start = lesson_start - timedelta(minutes=14)
 
-        # 1 hr lesson + 30 min drive home
-        protected_end = lesson_start + timedelta(hours=1, minutes=30)
-        print(protected_start.isoformat())
-        print(protected_end.isoformat())
+        # 1 hr lesson + 15 min drive home
+        protected_end = lesson_start + timedelta(hours=1, minutes=14)
+        # print(protected_start.isoformat())
+        # print(protected_end.isoformat())
 
         body = {
                 "timeMin": protected_start.isoformat(),
                 "timeMax": protected_end.isoformat(),
                 "items": [{"id": "primary"}]
             }
-        print(body)
+        # print(body)
 
         result = service.freebusy().query(
             body=body
